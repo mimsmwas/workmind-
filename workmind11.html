@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkMind Well-Being Companion</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #FF5722, #4CAF50);
+        }
+        #app {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #FF5722; /* Orange color */
+            font-weight: bold;
+            font-size: 36px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 10px;
+            color: #4CAF50; /* Sea green color */
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #333;
+        }
+        select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        select[multiple] {
+            height: 120px;
+        }
+        button {
+            background-color: #FF5722; /* Orange color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #feedback {
+            margin-top: 30px;
+            border: 2px solid #4CAF50; /* Sea green color */
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f5faff;
+            color: #333;
+        }
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+        }
+        /* Fun styles */
+        #fun-text {
+            text-align: center;
+            font-size: 20px;
+            color: #FF5722; /* Orange color */
+            animation: bounce 3s infinite;
+        }
+        .emoji {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>WorkMind Well-Being Companion</h1>
+
+        <!-- Reflection Categories -->
+        <h2>Reflection Categories</h2>
+        <label for="workload">Workload:</label>
+        <select id="workload" multiple>
+            <option value="manageable">Manageable</option>
+            <option value="overwhelming">Overwhelming</option>
+            <option value="balanced">Balanced</option>
+            <option value="intense">Intense</option>
+            <option value="excessive">Excessive</option>
+            <option value="challenging">Challenging</option>
+            <option value="stressful">Stressful</option>
+            <option value="light">Light</option>
+            <option value="demanding">Demanding</option>
+            <option value="under_control">Under Control</option>
+            <option value="stimulating">Stimulating</option>
+            <option value="exciting">Exciting</option>
+            <option value="tedious">Tedious</option>
+            <option value="rewarding">Rewarding</option>
+            <option value="draining">Draining</option>
+            <option value="fulfilling">Fulfilling</option>
+            <option value="challenging">Challenging</option>
+            <option value="busy">Busy</option>
+            <option value="productive">Productive</option>
+            <!-- Add more options under the category -->
+        </select>
+
+        <label for="communication">Communication:</label>
+        <select id="communication" multiple>
+            <option value="effective">Effective</option>
+            <option value="challenging">Challenging</option>
+            <option value="clear">Clear</option>
+            <option value="misunderstandings">Misunderstandings</option>
+            <option value="open">Open</option>
+            <option value="productive">Productive</option>
+            <option value="confusing">Confusing</option>
+            <option value="efficient">Efficient</option>
+            <option value="smooth">Smooth</option>
+            <option value="awkward">Awkward</option>
+            <option value="helpful">Helpful</option>
+            <option value="constructive">Constructive</option>
+            <option value="collaborative">Collaborative</option>
+            <option value="responsive">Responsive</option>
+            <option value="transparent">Transparent</option>
+            <option value="timely">Timely</option>
+            <option value="inconsistent">Inconsistent</option>
+            <option value="ineffective">Ineffective</option>
+            <!-- Add more options under the category -->
+        </select>
+
+        <label for="collaboration">Collaboration:</label>
+        <select id="collaboration" multiple>
+            <option value="harmonious">Harmonious</option>
+            <option value="conflict">Conflict</option>
+            <option value="productive">Productive</option>
+            <option value="team-building">Team Building</option>
+            <option value="cooperative">Cooperative</option>
+            <option value="seamless">Seamless</option>
+            <option value="disjointed">Disjointed</option>
+            <option value="creative">Creative</option>
+            <option value="supportive">Supportive</option>
+            <option value="difficult">Difficult</option>
+            <option value="effective">Effective</option>
+            <option value="empowering">Empowering</option>
+            <option value="collaborative">Collaborative</option>
+            <option value="inclusive">Inclusive</option>
+            <option value="inspiring">Inspiring</option>
+            <option value="productive">Productive</option>
+            <option value="trustworthy">Trustworthy</option>
+            <option value="respectful">Respectful</option>
+            <!-- Add more options under the category -->
+        </select>
+
+        <!-- Additional Reflection -->
+        <h2>Additional Reflection</h2>
+        <label for="dailyReflection">Reflect on Your WorkMind:</label>
+        <textarea id="dailyReflection" rows="4" placeholder="Take a moment to reflect on your workday..."></textarea>
+
+        <button id="analyzeBtn">Analyze My WorkMind</button>
+
+        <!-- Order Lunch and Taxi Buttons -->
+        <div id="actions">
+            <button onclick="redirectGlovo()">Order Lunch (Glovo)</button>
+            <button onclick="redirectUber()">Taxi (Uber)</button>
+        </div>
+
+        <!-- Fun Element -->
+        <div id="fun-text">
+            <p>Your well-being is a priority <span class="emoji">😃</span></p>
+        </div>
+
+        <!-- Compliment Generator -->
+        <div id="compliment">
+            <button onclick="generateCompliment()">Get a Compliment</button>
+        </div>
+
+        <!-- Feedback Section -->
+        <div id="feedback"></div>
+
+        <script>
+            // Function to redirect to Glovo
+            function redirectGlovo() {
+                window.location.href = 'https://glovoapp.com/';
+            }
+
+            // Function to redirect to Uber
+            function redirectUber() {
+                window.location.href = 'https://www.uber.com/';
+            }
+
+            // Function to analyze reflection (You need to implement the backend logic here)
+            document.getElementById('analyzeBtn').addEventListener('click', function() {
+                // Your backend logic to handle reflection analysis and feedback generation
+                // You can use the selected values from the reflection categories and additional reflection textarea
+                // Update the #feedback div with the generated feedback
+                const feedbackElement = document.getElementById('feedback');
+                feedbackElement.innerHTML = 'Your personalized feedback will be displayed here!';
+            });
+
+            // Fun Compliment Generator
+            function generateCompliment() {
+                const compliments = [
+                    "You're doing an amazing job!",
+                    "You're a superstar!",
+                    "Your work is outstanding!",
+                    "You're an inspiration to others!",
+                    "You make a positive impact every day!",
+                    "Keep up the fantastic work!",
+                    "Your contributions are invaluable!",
+                    "You're making a difference!",
+                    "You're the best!",
+                    "You're a rockstar!"
+                ];
+
+                const randomIndex = Math.floor(Math.random() * compliments.length);
+                const compliment = compliments[randomIndex];
+                const complimentDiv = document.createElement('div');
+                complimentDiv.innerText = compliment;
+                document.getElementById('compliment').appendChild(complimentDiv);
+            }
+        </script>
+    </div>
+</body>
+</html>
